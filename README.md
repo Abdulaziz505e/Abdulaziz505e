@@ -1,21 +1,11 @@
-import tkinter as tk
-from time import strftime
+import random
+import string
 
-def update_time():
-    current_time = strftime('%H:%M:%S %p')
-    label.config(text=current_time)
-    label.after(1000, update_time)  # تحديث كل ثانية
+def generate_password(length=12):
+    characters = string.ascii_letters + string.digits + string.punctuation
+    password = ''.join(random.choice(characters) for _ in range(length))
+    return password
 
-# إنشاء نافذة التطبيق
-root = tk.Tk()
-root.title("ساعة رقمية")
-
-# إعداد النص والتصميم
-label = tk.Label(root, font=('Arial', 50), background='black', foreground='cyan')
-label.pack(anchor='center')
-
-# تشغيل تحديث الوقت
-update_time()
-
-# تشغيل التطبيق
-root.mainloop()
+# Generate a random password with default length 12
+password = generate_password()
+print("Generated Password:", password)
